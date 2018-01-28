@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Poseyd29/FriendFinder#readme",
   "dependencies": {
     "body": "^5.1.0",
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "parser": "^0.1.4",
     "path": "^0.12.7"
