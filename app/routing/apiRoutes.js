@@ -1,33 +1,25 @@
-var surveyData = require("../data/friends");
+let friendsData = require("../data/friends");
 
 var path = require('path');
-
+let requestedObj = {
+  friends : friendsData,
+  user : ''
+}
 module.exports = function(app) {
   // API GET Requests
   // Below code handles when users "visit" a page.
   // In each of the below cases when a user visits a link
   // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
   // ---------------------------------------------------------------------------
-
+console.log("routes connected");
   app.get('/api/friends', function(req, res) {
-		res.json(friends);
+		res.json(requestedObj);
 	});
 
 	app.post('api/friends'), function(req, res) {
 
 		 var userInput = req.body;
 	}
-
-
-
-
-
-
-
-
-
-
-  
 
   // API POST Requests
   // Below code handles when a user submits a form and thus submits data to the server.
@@ -41,10 +33,12 @@ module.exports = function(app) {
     // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
     // It will do this by sending out the value "true" have a table
     // req.body is available since we're using the body-parser middleware
-    if (surveyData.length < 5) {
-      surveyData.push(req.body);
-      res.json(true);
-    }
+    console.log(req.body);
+    requestedObj.user = req.body;
+      // friendsData.push(req.body);
+     
+    
+    res.redirect("/results.html");
     
   });
 
@@ -54,9 +48,9 @@ module.exports = function(app) {
 
   app.post("/api/clear", function() {
     // Empty out the arrays of data
-    surveyData = [];
+    friendsData = [];
     
 
-    console.log(surveyData);
+    console.log(friendsData);
   });
 };
